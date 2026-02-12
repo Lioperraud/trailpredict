@@ -3,7 +3,10 @@ function ListTable({ children, header }) {
     <ul className="border-t border-gray-200 w-full">
       <li className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200 text-slate-400 font-medium text-sm">
         {header.map((h, index) => (
-          <span key={index} className={h.class}>
+          <span
+            key={index}
+            className={`col-span-${h.cs}${h.right ? ' text-right' : ''}`}
+          >
             {h.libelle}
           </span>
         ))}

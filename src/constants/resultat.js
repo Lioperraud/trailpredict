@@ -6,26 +6,29 @@ export const TECHNICITE = [
 export const HEADERLISTTABLE = [
   {
     libelle: 'Date',
-    class: 'col-span-2',
+    cs: 2,
   },
   {
     libelle: 'Trail',
-    class: 'col-span-3',
+    cs: 3,
   },
   {
     libelle: 'Distance',
-    class: 'col-span-2 text-right',
+    cs: 2,
+    right: true,
   },
   {
     libelle: 'Denivelé',
-    class: 'col-span-2 text-right',
+    cs: 2,
+    right: true,
   },
   {
     libelle: 'Temps',
-    class: 'col-span-2 text-right',
+    cs: 2,
+    right: true,
   },
   {
     libelle: '',
-    class: 'col-span-1',
+    cs: 1,
   },
 ]
