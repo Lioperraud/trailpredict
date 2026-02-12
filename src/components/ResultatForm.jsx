@@ -4,14 +4,9 @@ import InputField from './InputField'
 import SelectField from './SelectField'
 import FormEdit from './FormEdit'
 import { isValidDate, isNumeric, isValidDuration } from '../utils/form'
+import { TECHNICITE } from '../constants/resultat'
 
-function ResultatAdd({
-  resultats,
-  setResultats,
-  setAddResultat,
-  techniciteTab,
-  edit,
-}) {
+function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
   const [form, setForm] = useState({
     id: 0,
     date: '',
@@ -136,7 +131,7 @@ function ResultatAdd({
           value={form.technicite}
           onChange={handleChange}
           error={errors.technicite}
-          options={techniciteTab}
+          options={TECHNICITE}
         />
         <InputField
           label="Condition difficile"
@@ -150,4 +145,4 @@ function ResultatAdd({
     </div>
   )
 }
-export default ResultatAdd
+export default ResultatForm

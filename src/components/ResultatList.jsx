@@ -3,11 +3,12 @@ import InputSearch from './InputSearch'
 import ListTable from './ListTable'
 import Modal from './Modal'
 import ButtonPrimary from './ButtonPrimary'
-import ResultatAdd from './ResultatAdd'
+import ResultatForm from './ResultatForm'
 import { useState, useEffect } from 'react'
+import { HEADERLISTTABLE } from '../constants/resultat'
 
 function ResultatList() {
-  const [addResultat, setAddResultat] = useState(false)
+  //Valeurs de la liste
   const [resultats, setResultats] = useState(() => {
     const saved = localStorage.getItem('resultats')
     return saved ? JSON.parse(saved) : []
@@ -15,6 +16,8 @@ function ResultatList() {
   useEffect(() => {
     localStorage.setItem('resultats', JSON.stringify(resultats))
   }, [resultats])
+
+  //Affichage de la liste suivant filtre et ordre
   const [search, setSearch] = useState('')
   const filteredResultats = resultats.filter((r) =>
     r.nom.toLowerCase().includes(search.toLowerCase()),
@@ -23,50 +26,20 @@ function ResultatList() {
     (a, b) => new Date(b.date) - new Date(a.date),
   )
 
+  //Action sur la liste
+  const [addResultat, setAddResultat] = useState(false)
   const deleteResultat = (id) => {
     setResultats((prev) => prev.filter((r) => r.id !== id))
   }
-  const [editResultat, setEditResultat] = useState(false)
+  const [editResultat, setEditResultat] = useState(null)
   const handleEdit = (r) => {
     setEditResultat(r)
     setAddResultat(true)
   }
   const handleAdd = () => {
-    setEditResultat(false)
+    setEditResultat(null)
     setAddResultat(true)
   }
-  const techniciteTab = [
-    { value: '1', label: 'Faible' },
-    { value: '2', label: 'Moyenne' },
-    { value: '3', label: 'Elevé' },
-  ]
-
-  const headerListTable = [
-    {
-      libelle: 'Date',
-      class: 'col-span-2',
-    },
-    {
-      libelle: 'Trail',
-      class: 'col-span-3',
-    },
-    {
-      libelle: 'Distance',
-      class: 'col-span-2 text-right',
-    },
-    {
-      libelle: 'Denivelé',
-      class: 'col-span-2 text-right',
-    },
-    {
-      libelle: 'Temps',
-      class: 'col-span-2 text-right',
-    },
-    {
-      libelle: '',
-      class: 'col-span-1',
-    },
-  ]
 
   return (
     <>
@@ -75,12 +48,11 @@ function ResultatList() {
         onchange={(e) => setSearch(e.target.value)}
         placeholder="Rechercher une course..."
       />
-      <ListTable header={headerListTable}>
+      <ListTable header={HEADERLISTTABLE}>
         {orderedResultats.map((resultat) => (
           <ResultatElement
             key={resultat.id}
             resultat={resultat}
-            techniciteTab={techniciteTab}
             onDelete={deleteResultat}
             onEdit={handleEdit}
           />
@@ -89,11 +61,10 @@ function ResultatList() {
       <ButtonPrimary libelle="Ajouter" onclick={handleAdd} />
       {addResultat && (
         <Modal onclickclose={() => setAddResultat(false)}>
-          <ResultatAdd
+          <ResultatForm
             resultats={resultats}
             setResultats={setResultats}
             setAddResultat={setAddResultat}
-            techniciteTab={techniciteTab}
             edit={editResultat}
           />
         </Modal>

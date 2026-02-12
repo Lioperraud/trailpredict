@@ -6,7 +6,7 @@ function Resultats() {
   return (
     <>
       <Header title="Résultats" />
-      <section className="flex flex-col gap-4 p-8">
+      <section className="p-8">
         <Card title="Mes résultats">
           <ResultatList />
         </Card>

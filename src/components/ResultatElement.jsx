@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import DeleteButton from './DeleteButton'
+import { TECHNICITE } from '../constants/resultat'
 
-function ResultatElement({ resultat, techniciteTab, onDelete, onEdit }) {
+function ResultatElement({ resultat, onDelete, onEdit }) {
   const kmEffort = Math.round(
     resultat.distance * 1 + (resultat.denivele * 1) / 100,
   )
@@ -64,7 +65,7 @@ function ResultatElement({ resultat, techniciteTab, onDelete, onEdit }) {
         <span className="col-span-12 italic">
           <span className="font-bold">km-effort</span> : {kmEffort} /{' '}
           <span className="font-bold">Technicité</span>:{' '}
-          {techniciteTab.find((item) => item.value === resultat.technicite)
+          {TECHNICITE.find((item) => item.value === resultat.technicite)
             ?.label || 'nc'}{' '}
           / <span className="font-bold">Condition difficile</span> :{' '}
           {resultat.conditionDifficile ? 'oui' : 'non'}
