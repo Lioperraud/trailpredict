@@ -1,18 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TitleH2 from './TitleH2'
 import InputField from './InputField'
 import SelectField from './SelectField'
 import FormEdit from './FormEdit'
 import { isValidDate, isNumeric, isValidDuration } from '../utils/form'
-import { sleep } from '../utils/dev'
 
 function ResultatAdd({
   resultats,
   setResultats,
   setAddResultat,
   techniciteTab,
+  edit,
 }) {
   const [form, setForm] = useState({
+    id: 0,
     date: '',
     nom: '',
     distance: '',
@@ -21,6 +22,12 @@ function ResultatAdd({
     conditionDifficile: false,
     technicite: '',
   })
+
+  useEffect(() => {
+    if (edit) {
+      setForm(edit)
+    }
+  }, [edit])
 
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
@@ -64,19 +71,15 @@ function ResultatAdd({
     const validationErrors = validate()
     setErrors(validationErrors)
     if (!Object.keys(validationErrors).length) {
-      setResultats([
-        ...resultats,
-        {
-          id: Date.now(),
-          date: form.date,
-          nom: form.nom,
-          distance: form.distance,
-          denivele: form.denivele,
-          temps: form.temps,
-          conditionDifficile: form.conditionDifficile,
-          technicite: form.technicite,
-        },
-      ])
+      let newResultats
+      if (!form.id) {
+        newResultats = [...resultats, { ...form, id: Date.now() }]
+      } else {
+        newResultats = resultats.map((r) =>
+          r.id === form.id ? { ...r, ...form } : r,
+        )
+      }
+      setResultats(newResultats)
       setAddResultat(false)
     }
     setLoading(false)

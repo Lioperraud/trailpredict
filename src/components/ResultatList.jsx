@@ -8,9 +8,6 @@ import { useState, useEffect } from 'react'
 
 function ResultatList() {
   const [addResultat, setAddResultat] = useState(false)
-  const handleClickAdd = () => {
-    setAddResultat(true)
-  }
   const [resultats, setResultats] = useState(() => {
     const saved = localStorage.getItem('resultats')
     return saved ? JSON.parse(saved) : []
@@ -28,6 +25,15 @@ function ResultatList() {
 
   const deleteResultat = (id) => {
     setResultats((prev) => prev.filter((r) => r.id !== id))
+  }
+  const [editResultat, setEditResultat] = useState(false)
+  const handleEdit = (r) => {
+    setEditResultat(r)
+    setAddResultat(true)
+  }
+  const handleAdd = () => {
+    setEditResultat(false)
+    setAddResultat(true)
   }
   const techniciteTab = [
     { value: '1', label: 'Faible' },
@@ -76,10 +82,11 @@ function ResultatList() {
             resultat={resultat}
             techniciteTab={techniciteTab}
             onDelete={deleteResultat}
+            onEdit={handleEdit}
           />
         ))}
       </ListTable>
-      <ButtonPrimary libelle="Ajouter" onclick={handleClickAdd} />
+      <ButtonPrimary libelle="Ajouter" onclick={handleAdd} />
       {addResultat && (
         <Modal onclickclose={() => setAddResultat(false)}>
           <ResultatAdd
@@ -87,6 +94,7 @@ function ResultatList() {
             setResultats={setResultats}
             setAddResultat={setAddResultat}
             techniciteTab={techniciteTab}
+            edit={editResultat}
           />
         </Modal>
       )}
