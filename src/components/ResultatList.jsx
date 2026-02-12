@@ -1,35 +1,9 @@
 import ResultatElement from './ResultatElement'
 import InputSearch from './InputSearch'
 import ListTable from './ListTable'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-function ResultatList() {
-  const [resultats, setResultats] = useState([
-    {
-      id: 1,
-      date: '2024-06-14',
-      nom: 'Ultra01',
-      distance: 170,
-      denivele: 8500,
-      temps: '43:54:55',
-    },
-    {
-      id: 2,
-      date: '2025-10-11',
-      nom: 'GTA',
-      distance: 130.87,
-      denivele: 5161,
-      temps: '23:07:27',
-    },
-    {
-      id: 3,
-      date: '2023-03-11',
-      nom: 'Trail du Ventoux',
-      distance: 73.62,
-      denivele: 3863,
-      temps: '12:22:59',
-    },
-  ])
+function ResultatList({ resultats, techniciteTab }) {
   const [search, setSearch] = useState('')
   const filteredResultats = resultats.filter((r) =>
     r.nom.toLowerCase().includes(search.toLowerCase()),
@@ -41,27 +15,23 @@ function ResultatList() {
   const headerListTable = [
     {
       libelle: 'Date',
-      class: 'w-32',
+      class: 'col-span-2',
     },
     {
       libelle: 'Course',
-      class: 'flex-auto',
+      class: 'col-span-4',
     },
     {
       libelle: 'Distance',
-      class: 'w-16 text-right',
+      class: 'col-span-2 text-right',
     },
     {
       libelle: 'Denivelé',
-      class: 'w-16 text-right',
-    },
-    {
-      libelle: 'km-effot',
-      class: 'w-16 text-right',
+      class: 'col-span-2 text-right',
     },
     {
       libelle: 'Temps',
-      class: 'w-24 text-right',
+      class: 'col-span-2 text-right',
     },
   ]
 
@@ -74,7 +44,11 @@ function ResultatList() {
       />
       <ListTable header={headerListTable}>
         {orderedResultats.map((resultat) => (
-          <ResultatElement key={resultat.id} resultat={resultat} />
+          <ResultatElement
+            key={resultat.id}
+            resultat={resultat}
+            techniciteTab={techniciteTab}
+          />
         ))}
       </ListTable>
     </>

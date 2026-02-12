@@ -1,29 +1,29 @@
 import { useState } from 'react'
 import TitleH2 from './TitleH2'
 import InputField from './InputField'
+import SelectField from './SelectField'
 import FormEdit from './FormEdit'
+import { isValidDate, isNumeric, isValidDuration } from '../utils/form'
+import { sleep } from '../utils/dev'
 
-function ResultatAdd() {
+function ResultatAdd({
+  resultats,
+  setResultats,
+  setAddResultat,
+  techniciteTab,
+}) {
   const [form, setForm] = useState({
     date: '',
     nom: '',
     distance: '',
     denivele: '',
     temps: '',
+    conditionDifficile: false,
+    technicite: '',
   })
-  const [errors, setErrors] = useState({})
 
-  const isValidDate = (dateStr) => {
-    const date = new Date(dateStr)
-    return !isNaN(date.getTime())
-  }
-  const isNumeric = (value) => {
-    return value !== '' && !isNaN(value)
-  }
-  const isValidDuration = (timeStr) => {
-    const regex = /^\d+:[0-5]\d:[0-5]\d$/
-    return regex.test(timeStr)
-  }
+  const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const validate = () => {
     const newErrors = {}
@@ -40,9 +40,13 @@ function ResultatAdd() {
     if (!form.denivele) newErrors.denivele = 'Le dénivelé est obligatoire'
     else if (!isNumeric(form.denivele))
       newErrors.denivele = 'Le dénivelé doit être un numérique'
+
     if (!form.temps) newErrors.temps = 'Le temps est obligatoire'
     else if (!isValidDuration(form.temps))
       newErrors.temps = 'Le format doit être H:MM:SS'
+
+    if (!form.technicite) newErrors.technicite = 'La technicité est obligatoire'
+
     return newErrors
   }
   const handleChange = (e) => {
@@ -53,18 +57,40 @@ function ResultatAdd() {
       [name]: type === 'checkbox' ? checked : value,
     })
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     const validationErrors = validate()
     setErrors(validationErrors)
-    if (!Object.keys(validationErrors).length) console.log('Form OK')
+    if (!Object.keys(validationErrors).length) {
+      setResultats([
+        ...resultats,
+        {
+          id: Date.now(),
+          date: form.date,
+          nom: form.nom,
+          distance: form.distance,
+          denivele: form.denivele,
+          temps: form.temps,
+          conditionDifficile: form.conditionDifficile,
+          technicite: form.technicite,
+        },
+      ])
+      setAddResultat(false)
+    }
+    setLoading(false)
   }
   return (
     <div className="w-100 flex flex-col gap-4">
       <header className="pb-1 border-b-2 border-gray-200">
         <TitleH2 title="Ajouter un résultat" />
       </header>
-      <FormEdit onsubmit={handleSubmit} btnvalidelibelle="Enregister">
+      <FormEdit
+        onsubmit={handleSubmit}
+        btnvalidelibelle="Enregister"
+        disabled={loading}
+      >
         <InputField
           label="Date"
           name="date"
@@ -100,6 +126,22 @@ function ResultatAdd() {
           value={form.temps}
           onChange={handleChange}
           error={errors.temps}
+        />
+        <SelectField
+          label="Techinicité"
+          name="technicite"
+          value={form.technicite}
+          onChange={handleChange}
+          error={errors.technicite}
+          options={techniciteTab}
+        />
+        <InputField
+          label="Condition difficile"
+          name="conditionDifficile"
+          type="checkbox"
+          value={form.conditionDifficile}
+          onChange={handleChange}
+          error={errors.conditionDifficile}
         />
       </FormEdit>
     </div>
