@@ -43,21 +43,29 @@ function ResultatList() {
 
   return (
     <>
-      <InputSearch
-        search={search}
-        onchange={(e) => setSearch(e.target.value)}
-        placeholder="Rechercher une course..."
-      />
-      <ListTable header={HEADERLISTTABLE}>
-        {orderedResultats.map((resultat) => (
-          <ResultatElement
-            key={resultat.id}
-            resultat={resultat}
-            onDelete={deleteResultat}
-            onEdit={handleEdit}
+      {resultats.length > 0 ? (
+        <>
+          <InputSearch
+            search={search}
+            onchange={(e) => setSearch(e.target.value)}
+            placeholder="Rechercher une course..."
           />
-        ))}
-      </ListTable>
+          <ListTable header={HEADERLISTTABLE}>
+            {orderedResultats.map((resultat) => (
+              <ResultatElement
+                key={resultat.id}
+                resultat={resultat}
+                onDelete={deleteResultat}
+                onEdit={handleEdit}
+              />
+            ))}
+          </ListTable>
+        </>
+      ) : (
+        <p className="text-center p-4 text-red-600 w-full">
+          Vous n'avez pas encore saisie de résultat
+        </p>
+      )}
       <ButtonPrimary libelle="Ajouter" onclick={handleAdd} />
       {addResultat && (
         <Modal onclickclose={() => setAddResultat(false)}>
