@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import DeleteButton from './DeleteButton'
 
-function ResultatElement({ resultat, techniciteTab }) {
+function ResultatElement({ resultat, techniciteTab, onDelete }) {
   const kmEffort = Math.round(
     resultat.distance * 1 + (resultat.denivele * 1) / 100,
   )
@@ -10,6 +11,10 @@ function ResultatElement({ resultat, techniciteTab }) {
     year: 'numeric',
   })
   const [affDetail, setAffDetail] = useState(false)
+  const deleteResutat = () => {
+    console.log('Delete resultat')
+    console.log(resultats)
+  }
 
   return (
     <li className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200">
@@ -36,10 +41,16 @@ function ResultatElement({ resultat, techniciteTab }) {
 
         {dateFormatFr}
       </span>
-      <span className="col-span-4 font-bold">{resultat.nom}</span>
+      <span className="col-span-3 font-bold">{resultat.nom}</span>
       <span className="col-span-2 text-right">{resultat.distance}</span>
       <span className="col-span-2 text-right">{resultat.denivele}</span>
       <span className="col-span-2 font-bold text-right">{resultat.temps}</span>
+      <span className="col-span-1 flex justify-end items-center">
+        <DeleteButton
+          onClick={() => onDelete(resultat.id)}
+          precisions={`Trail : ${resultat.nom}`}
+        />
+      </span>
       {affDetail && (
         <span className="col-span-12 italic">
           <span className="font-bold">km-effort</span> : {kmEffort} /{' '}

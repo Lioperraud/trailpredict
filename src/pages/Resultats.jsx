@@ -30,7 +30,11 @@ function Resultats() {
       <Header title="Résultats" />
       <section className="flex flex-col gap-4 p-8">
         <Card title="Mes résultats">
-          <ResultatList resultats={resultats} techniciteTab={techniciteTab} />
+          <ResultatList
+            resultats={resultats}
+            setResultats={setResultats}
+            techniciteTab={techniciteTab}
+          />
           <ButtonPrimary libelle="Ajouter" onclick={handleClickAdd} />
         </Card>
         {addResultat && (
