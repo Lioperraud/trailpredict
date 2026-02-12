@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import logoImg from '../assets/logo-trailpredict-mini.png'
 
 function NavBar() {
   const linkClass = ({ isActive }) =>
@@ -7,6 +8,7 @@ function NavBar() {
     }`
   return (
     <nav className="w-64 flex-none h-screen bg-cyan-950  text-white flex flex-col p-4">
+      <img src={logoImg} alt="" className="w-48 mx-auto my-4" />
       <NavLink to="/" className={linkClass}>
         <svg
           version="1.1"
