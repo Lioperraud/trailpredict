@@ -4,11 +4,11 @@ import logoImg from '../assets/logo-trailpredict-mini.png'
 function NavBar() {
   const linkClass = ({ isActive }) =>
     `flex gap-2 px-4 py-2 rounded-lg transition delay-150 duration-200 ease-in ${
-      isActive ? 'bg-cyan-800 text-white' : 'text-gray-500 hover:text-white'
+      isActive ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-white'
     }`
   return (
-    <nav className="w-64 flex-none h-screen bg-cyan-950  text-white flex flex-col p-4">
-      <img src={logoImg} alt="" className="w-48 mx-auto my-4" />
+    <nav className="w-64 flex-none h-screen bg-gray-700  text-white flex flex-col p-4 gap-2">
+      <img src={logoImg} alt="" className="w-48 mx-auto mt-4 mb-6" />
       <NavLink to="/" className={linkClass}>
         <svg
           version="1.1"
