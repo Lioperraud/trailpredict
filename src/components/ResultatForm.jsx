@@ -16,6 +16,7 @@ function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
     temps: '',
     conditionDifficile: false,
     technicite: '',
+    horsCalcul: false,
   })
 
   useEffect(() => {
@@ -134,12 +135,20 @@ function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
           options={TECHNICITE}
         />
         <InputField
-          label="Condition difficile"
+          label="Condition difficile (météo, forme, terrain)"
           name="conditionDifficile"
           type="checkbox"
           value={form.conditionDifficile}
           onChange={handleChange}
           error={errors.conditionDifficile}
+        />
+        <InputField
+          label="Exclure du calcul"
+          name="horsCalcul"
+          type="checkbox"
+          value={form.horsCalcul}
+          onChange={handleChange}
+          error={errors.horsCalcul}
         />
       </FormEdit>
     </div>
