@@ -1,7 +1,9 @@
 import Header from '../components/Header'
 import ResultatStat from '../components/ResultatStat'
+import { initvaleur } from '../utils/dev'
 
 function Dashboard() {
+  //initvaleur()
   return (
     <>
       <Header title="Dashboard" />
