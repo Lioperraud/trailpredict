@@ -1,0 +1,43 @@
+import CardPush from './CardPush'
+import Stat from './Stat'
+
+function ResultatStat() {
+  const saved = localStorage.getItem('resultats')
+  const resultats = saved ? JSON.parse(saved) : []
+  const maxDistanceItem = resultats.reduce((a, b) =>
+    +a.distance > +b.distance ? a : b,
+  )
+  const maxDeniveleItem = resultats.reduce((a, b) =>
+    +a.denivele > +b.denivele ? a : b,
+  )
+  const maxDeniveleFormate = (+maxDeniveleItem.denivele).toLocaleString('fr-FR')
+  return (
+    <div className="w-full flex flex-wrap gap-4">
+      <CardPush>
+        <Stat titre="Total" chiffre={resultats.length} precisions="Trails" />
+      </CardPush>
+      <CardPush>
+        <Stat
+          titre="Distance la plus longue"
+          chiffre={`${maxDistanceItem.distance} km`}
+          precisions={maxDistanceItem.nom}
+        />
+      </CardPush>
+      <CardPush>
+        <Stat
+          titre="Dénivelé le plus grand"
+          chiffre={`${maxDeniveleFormate} m`}
+          precisions={maxDeniveleItem.nom}
+        />
+      </CardPush>
+      <CardPush>
+        <Stat
+          titre="Meilleur performance"
+          chiffre="00:00:00"
+          precisions="Grand trail de la loutre"
+        />
+      </CardPush>
+    </div>
+  )
+}
+export default ResultatStat

@@ -7,20 +7,13 @@ import ResultatForm from './ResultatForm'
 import { useState, useEffect } from 'react'
 import { HEADERLISTTABLE } from '../constants/resultat'
 
-function ResultatList() {
-  //Valeurs de la liste
-  const [resultats, setResultats] = useState(() => {
-    const saved = localStorage.getItem('resultats')
-    return saved ? JSON.parse(saved) : []
-  })
-  useEffect(() => {
-    localStorage.setItem('resultats', JSON.stringify(resultats))
-  }, [resultats])
-
+function ResultatList({ resultats, setResultats }) {
   //Affichage de la liste suivant filtre et ordre
   const [search, setSearch] = useState('')
   const filteredResultats = resultats.filter((r) =>
-    r.nom.toLowerCase().includes(search.toLowerCase()),
+    ['nom', 'date'].some((key) =>
+      r[key].toLowerCase().includes(search.toLowerCase()),
+    ),
   )
   const orderedResultats = filteredResultats.sort(
     (a, b) => new Date(b.date) - new Date(a.date),
@@ -48,7 +41,7 @@ function ResultatList() {
           <InputSearch
             search={search}
             onchange={(e) => setSearch(e.target.value)}
-            placeholder="Rechercher une course..."
+            placeholder="Rechercher une résultat..."
           />
           <ListTable header={HEADERLISTTABLE}>
             {orderedResultats.map((resultat) => (
