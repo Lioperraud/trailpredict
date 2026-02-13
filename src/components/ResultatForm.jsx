@@ -138,7 +138,7 @@ function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
           label="Condition difficile (météo, forme, terrain)"
           name="conditionDifficile"
           type="checkbox"
-          value={form.conditionDifficile}
+          checked={form.conditionDifficile}
           onChange={handleChange}
           error={errors.conditionDifficile}
         />
@@ -146,7 +146,7 @@ function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
           label="Exclure du calcul"
           name="horsCalcul"
           type="checkbox"
-          value={form.horsCalcul}
+          checked={form.horsCalcul}
           onChange={handleChange}
           error={errors.horsCalcul}
         />

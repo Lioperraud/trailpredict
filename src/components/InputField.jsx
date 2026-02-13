@@ -5,6 +5,7 @@ function InputField({
   onChange,
   error = false,
   type = 'text',
+  checked = false,
 }) {
   const inputClass = `
   bg-white rounded-lg border outline-indigo-300
@@ -24,6 +25,7 @@ function InputField({
         value={value}
         onChange={onChange}
         className={inputClass}
+        checked={checked}
       />
       {error && <p className="text-red-700 font-medium italic">{error}</p>}
     </div>
