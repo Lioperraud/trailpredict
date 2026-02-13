@@ -4,6 +4,10 @@ import Stat from './Stat'
 function ResultatStat() {
   const saved = localStorage.getItem('resultats')
   const resultats = saved ? JSON.parse(saved) : []
+
+  //Si aucun résultat pas de stat
+  if (!resultats.length) return false
+
   const maxDistanceItem = resultats.reduce((a, b) =>
     +a.distance > +b.distance ? a : b,
   )
