@@ -7,7 +7,16 @@ import ResultatForm from './ResultatForm'
 import { useState, useEffect } from 'react'
 import { HEADERLISTTABLE } from '../constants/resultat'
 
-function ResultatList({ resultats, setResultats }) {
+function ResultatList() {
+  //Valeurs de la liste
+  const [resultats, setResultats] = useState(() => {
+    const saved = localStorage.getItem('resultats')
+    return saved ? JSON.parse(saved) : []
+  })
+  useEffect(() => {
+    localStorage.setItem('resultats', JSON.stringify(resultats))
+  }, [resultats])
+
   //Affichage de la liste suivant filtre et ordre
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
