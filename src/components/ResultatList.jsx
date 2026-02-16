@@ -6,6 +6,7 @@ import ButtonPrimary from './ButtonPrimary'
 import ResultatForm from './ResultatForm'
 import { useState, useEffect } from 'react'
 import { HEADERLISTTABLE } from '../constants/resultat'
+import { timeToSeconds } from '../utils/date'
 
 function ResultatList() {
   //Valeurs de la liste
@@ -17,8 +18,9 @@ function ResultatList() {
     localStorage.setItem('resultats', JSON.stringify(resultats))
   }, [resultats])
 
-  //Affichage de la liste suivant filtre et ordre
+  //Affichage de la liste suivant filtre - ordre - pagination
   const [search, setSearch] = useState('')
+  const [ordre, setOrdre] = useState({ champ: 'date', desc: true })
   const [page, setPage] = useState(1)
   const nbResultatsParPage = 10
   const filteredResultats = resultats.filter((r) =>
@@ -26,15 +28,35 @@ function ResultatList() {
       r[key].toLowerCase().includes(search.toLowerCase()),
     ),
   )
-  const orderedResultats = filteredResultats.sort(
-    (a, b) => new Date(b.date) - new Date(a.date),
-  )
+  const orderedResultats = filteredResultats.sort((a, b) => {
+    if (ordre.champ == 'date') {
+      if (ordre.desc) return new Date(b[ordre.champ]) - new Date(a[ordre.champ])
+      else return new Date(a[ordre.champ]) - new Date(b[ordre.champ])
+    } else if (ordre.champ == 'temps') {
+      if (ordre.desc)
+        return timeToSeconds(b[ordre.champ]) - timeToSeconds(a[ordre.champ])
+      else return timeToSeconds(a[ordre.champ]) - timeToSeconds(b[ordre.champ])
+    } else if (ordre.champ == 'distance' || ordre.champ == 'denivele') {
+      if (ordre.desc) return +b[ordre.champ] - +a[ordre.champ]
+      else return +a[ordre.champ] - +b[ordre.champ]
+    } else {
+      if (ordre.desc) return b[ordre.champ].localeCompare(a[ordre.champ])
+      else return a[ordre.champ].localeCompare(b[ordre.champ])
+    }
+  })
   const paginatedResultats = orderedResultats.slice(
     page * nbResultatsParPage - nbResultatsParPage,
     page * nbResultatsParPage,
   )
   const totalPages = Math.ceil(resultats.length / nbResultatsParPage)
   const pagination = Array.from({ length: totalPages }, (_, i) => i + 1)
+  const trilist = (name) => {
+    if (name.length) {
+      let newDesc = false
+      if (name == ordre.champ) newDesc = !ordre.desc
+      setOrdre({ champ: name, desc: newDesc })
+    }
+  }
 
   //Action sur la liste
   const [addResultat, setAddResultat] = useState(false)
@@ -60,7 +82,11 @@ function ResultatList() {
             onchange={(e) => setSearch(e.target.value)}
             placeholder="Rechercher une résultat..."
           />
-          <ListTable header={HEADERLISTTABLE}>
+          <ListTable
+            header={HEADERLISTTABLE}
+            onclickheader={trilist}
+            ordre={ordre}
+          >
             {paginatedResultats.map((resultat) => (
               <ResultatElement
                 key={resultat.id}
