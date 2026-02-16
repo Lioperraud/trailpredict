@@ -3,9 +3,6 @@ import DeleteButton from './DeleteButton'
 import { TECHNICITE } from '../constants/resultat'
 
 function ResultatElement({ resultat, onDelete, onEdit }) {
-  const kmEffort = Math.round(
-    resultat.distance * 1 + (resultat.denivele * 1) / 100,
-  )
   const dateFormatFr = new Date(resultat.date).toLocaleDateString('fr-FR', {
     day: 'numeric',
     month: 'numeric',
@@ -38,10 +35,11 @@ function ResultatElement({ resultat, onDelete, onEdit }) {
 
         {dateFormatFr}
       </span>
-      <span className="col-span-3 font-bold">{resultat.nom}</span>
-      <span className="col-span-2 text-right">{resultat.distance}</span>
-      <span className="col-span-2 text-right">{resultat.denivele}</span>
+      <span className="col-span-4 font-bold">{resultat.nom}</span>
+      <span className="col-span-1 text-right">{resultat.distance}</span>
+      <span className="col-span-1 text-right">{resultat.denivele}</span>
       <span className="col-span-2 font-bold text-right">{resultat.temps}</span>
+      <span className="col-span-1 font-bold text-right">{resultat.indice}</span>
       <span className="col-span-1 flex justify-end items-center gap-2">
         <svg
           version="1.1"
@@ -63,7 +61,7 @@ function ResultatElement({ resultat, onDelete, onEdit }) {
       </span>
       {affDetail && (
         <span className="col-span-12 italic">
-          <span className="font-bold">km-effort</span> : {kmEffort} /{' '}
+          <span className="font-bold">km-effort</span> : {resultat.kmEffort} /{' '}
           <span className="font-bold">Technicité</span>:{' '}
           {TECHNICITE.find((item) => item.value === resultat.technicite)
             ?.label || 'nc'}{' '}

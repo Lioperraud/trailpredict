@@ -208,7 +208,7 @@ export const initvaleur = () => {
       denivele: '779',
       temps: '2:30:03',
       technicite: '2',
-      conditionDifficile: false,
+      conditionDifficile: true,
       horsCalcul: false,
     },
     {

@@ -7,6 +7,7 @@ import ResultatForm from './ResultatForm'
 import { useState, useEffect } from 'react'
 import { HEADERLISTTABLE } from '../constants/resultat'
 import { timeToSeconds } from '../utils/date'
+import { scoreTrail } from '../utils/calcul'
 
 function ResultatList() {
   //Valeurs de la liste
@@ -18,12 +19,22 @@ function ResultatList() {
     localStorage.setItem('resultats', JSON.stringify(resultats))
   }, [resultats])
 
+  //Ajout des valeurs calculées
+  const resultatsWithKmEffort = resultats.map((r) => ({
+    ...r,
+    kmEffort: Math.round(r.distance * 1 + (r.denivele * 1) / 100),
+  }))
+  const resultatsWithIndice = resultatsWithKmEffort.map((r) => ({
+    ...r,
+    indice: scoreTrail(r.temps, r.kmEffort),
+  }))
+
   //Affichage de la liste suivant filtre - ordre - pagination
   const [search, setSearch] = useState('')
   const [ordre, setOrdre] = useState({ champ: 'date', desc: true })
   const [page, setPage] = useState(1)
   const nbResultatsParPage = 10
-  const filteredResultats = resultats.filter((r) =>
+  const filteredResultats = resultatsWithIndice.filter((r) =>
     ['nom', 'date'].some((key) =>
       r[key].toLowerCase().includes(search.toLowerCase()),
     ),
@@ -36,7 +47,11 @@ function ResultatList() {
       if (ordre.desc)
         return timeToSeconds(b[ordre.champ]) - timeToSeconds(a[ordre.champ])
       else return timeToSeconds(a[ordre.champ]) - timeToSeconds(b[ordre.champ])
-    } else if (ordre.champ == 'distance' || ordre.champ == 'denivele') {
+    } else if (
+      ordre.champ == 'distance' ||
+      ordre.champ == 'denivele' ||
+      ordre.champ == 'indice'
+    ) {
       if (ordre.desc) return +b[ordre.champ] - +a[ordre.champ]
       else return +a[ordre.champ] - +b[ordre.champ]
     } else {

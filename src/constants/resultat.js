@@ -12,24 +12,30 @@ export const HEADERLISTTABLE = [
   {
     name: 'nom',
     libelle: 'Trail',
-    cs: 3,
+    cs: 4,
   },
   {
     name: 'distance',
     libelle: 'Distance',
-    cs: 2,
+    cs: 1,
     right: true,
   },
   {
     name: 'denivele',
     libelle: 'Denivelé',
-    cs: 2,
+    cs: 1,
     right: true,
   },
   {
     name: 'temps',
     libelle: 'Temps',
     cs: 2,
+    right: true,
+  },
+  {
+    name: 'indice',
+    libelle: 'Indice',
+    cs: 1,
     right: true,
   },
 ]
