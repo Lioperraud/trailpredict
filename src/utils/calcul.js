@@ -64,3 +64,45 @@ export function predictTime(
 
   return hoursToTimeStr(timeHours)
 }
+export function indiceAvg(resultats, distance) {
+  const paliers = [
+    { min: 0, max: 10 },
+    { min: 10, max: 30 },
+    { min: 30, max: 60 },
+    { min: 60, max: 90 },
+    { min: 90, max: 120 },
+    { min: 120, max: 9999 },
+  ]
+  const myPalier = paliers.find((p) => distance > p.min && distance <= p.max)
+
+  const filteredResultats = resultats.filter(
+    (r) => r.distance > myPalier.min && r.distance < myPalier.max,
+  )
+  if (!filteredResultats.length) return false
+
+  const resultatsWithIndice = filteredResultats.map((r) => ({
+    ...r,
+    indice: scoreTrail(
+      r.distance,
+      r.denivele,
+      r.temps,
+      r.technicite,
+      r.conditionDifficile,
+    ),
+  }))
+
+  const stats = resultatsWithIndice.reduce(
+    (acc, item) => {
+      acc.min = Math.min(acc.min, item.indice)
+      acc.max = Math.max(acc.max, item.indice)
+      acc.sum += item.indice
+      return acc
+    },
+    { min: Infinity, max: -Infinity, sum: 0 },
+  )
+  return {
+    min: stats.min,
+    max: stats.max,
+    avg: Math.round(stats.sum / resultatsWithIndice.length),
+  }
+}
