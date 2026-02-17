@@ -135,7 +135,7 @@ function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
           options={TECHNICITE}
         />
         <InputField
-          label="Condition difficile (météo, forme, terrain)"
+          label="Condition difficile (météo, terrain)"
           name="conditionDifficile"
           type="checkbox"
           checked={form.conditionDifficile}

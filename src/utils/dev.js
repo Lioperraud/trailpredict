@@ -208,7 +208,7 @@ export const initvaleur = () => {
       denivele: '779',
       temps: '2:30:03',
       technicite: '2',
-      conditionDifficile: true,
+      conditionDifficile: false,
       horsCalcul: false,
     },
     {
@@ -450,7 +450,7 @@ export const initvaleur = () => {
       denivele: '1295',
       temps: '4:47:07',
       technicite: '2',
-      conditionDifficile: true,
+      conditionDifficile: false,
       horsCalcul: false,
     },
     {
@@ -505,7 +505,7 @@ export const initvaleur = () => {
       denivele: '3863',
       temps: '12:22:59',
       technicite: '2',
-      conditionDifficile: true,
+      conditionDifficile: false,
       horsCalcul: false,
     },
     {
@@ -522,7 +522,7 @@ export const initvaleur = () => {
     {
       id: 48,
       date: '2022-10-01',
-      nom: 'UTMJ -Renarde',
+      nom: 'UTMJ - Renarde',
       distance: '78.95',
       denivele: '3054',
       temps: '12:17:02',
@@ -538,7 +538,7 @@ export const initvaleur = () => {
       denivele: '2341',
       temps: '8:13:38',
       technicite: '3',
-      conditionDifficile: true,
+      conditionDifficile: false,
       horsCalcul: false,
     },
     {
@@ -549,7 +549,7 @@ export const initvaleur = () => {
       denivele: '5161',
       temps: '23:07:27',
       technicite: '2',
-      conditionDifficile: true,
+      conditionDifficile: false,
       horsCalcul: false,
     },
     {
@@ -604,7 +604,7 @@ export const initvaleur = () => {
       denivele: '2508',
       temps: '8:23:07',
       technicite: '3',
-      conditionDifficile: true,
+      conditionDifficile: false,
       horsCalcul: false,
     },
     {
@@ -626,7 +626,18 @@ export const initvaleur = () => {
       denivele: '8500',
       temps: '43:54:55',
       technicite: '2',
-      conditionDifficile: false,
+      conditionDifficile: true,
+      horsCalcul: false,
+    },
+    {
+      id: 58,
+      date: '2025-06-07',
+      nom: "Trans'Ju trail",
+      distance: '43',
+      denivele: '2280',
+      temps: '7:22:01',
+      technicite: '1',
+      conditionDifficile: true,
       horsCalcul: false,
     },
   ]

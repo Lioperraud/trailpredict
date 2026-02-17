@@ -26,7 +26,13 @@ function ResultatList() {
   }))
   const resultatsWithIndice = resultatsWithKmEffort.map((r) => ({
     ...r,
-    indice: scoreTrail(r.temps, r.kmEffort),
+    indice: scoreTrail(
+      r.distance,
+      r.denivele,
+      r.temps,
+      r.technicite,
+      r.conditionDifficile,
+    ),
   }))
 
   //Affichage de la liste suivant filtre - ordre - pagination
