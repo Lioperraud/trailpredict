@@ -6,7 +6,7 @@ import { isNumeric } from '../utils/form'
 import { useState, useEffect } from 'react'
 import { TECHNICITE } from '../constants/resultat'
 
-function PrevisionsForm({ myTrail, setMyTrail }) {
+function PrevisionsForm({ myTrail, setMyTrail, predict }) {
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState(myTrail)
   useEffect(() => {
@@ -79,7 +79,9 @@ function PrevisionsForm({ myTrail, setMyTrail }) {
           options={TECHNICITE}
         />
       </FormEdit>
-      <ButtonSecondary libelle="Réinitialiser" onclick={handleDelete} />
+      {predict && (
+        <ButtonSecondary libelle="Réinitialiser" onclick={handleDelete} />
+      )}
     </>
   )
 }

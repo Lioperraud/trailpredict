@@ -64,45 +64,89 @@ export function predictTime(
 
   return hoursToTimeStr(timeHours)
 }
-export function indiceAvg(resultats, distance) {
-  const paliers = [
-    { min: 0, max: 10 },
-    { min: 10, max: 30 },
-    { min: 30, max: 60 },
-    { min: 60, max: 90 },
-    { min: 90, max: 120 },
-    { min: 120, max: 9999 },
-  ]
-  const myPalier = paliers.find((p) => distance > p.min && distance <= p.max)
 
-  const filteredResultats = resultats.filter(
-    (r) => r.distance > myPalier.min && r.distance < myPalier.max,
-  )
-  if (!filteredResultats.length) return false
+export function estimateIndiceFromHistory(history, target) {
+  if (!history || history.length === 0) return null
+  if (typeof scoreTrail !== 'function')
+    throw new Error('scoreTrail doit être fourni')
 
-  const resultatsWithIndice = filteredResultats.map((r) => ({
+  // Filtre les courses valides
+  const validHistory = history.filter((r) => !r.horsCalcul)
+
+  // On enrichit history avec l'indice
+  const historyWithIndice = validHistory.map((r) => ({
     ...r,
     indice: scoreTrail(
-      r.distance,
-      r.denivele,
+      Number(r.distance),
+      Number(r.denivele),
       r.temps,
-      r.technicite,
+      Number(r.technicite),
       r.conditionDifficile,
     ),
   }))
 
-  const stats = resultatsWithIndice.reduce(
-    (acc, item) => {
-      acc.min = Math.min(acc.min, item.indice)
-      acc.max = Math.max(acc.max, item.indice)
-      acc.sum += item.indice
-      return acc
-    },
-    { min: Infinity, max: -Infinity, sum: 0 },
-  )
-  return {
-    min: stats.min,
-    max: stats.max,
-    avg: Math.round(stats.sum / resultatsWithIndice.length),
+  // Récupération des bornes pour normalisation
+  const distances = historyWithIndice.map((c) => Number(c.distance))
+  const deniveleArr = historyWithIndice.map((c) => Number(c.denivele))
+  const techArr = historyWithIndice.map((c) => Number(c.technicite))
+
+  const minD = Math.min(...distances)
+  const maxD = Math.max(...distances)
+  const minDen = Math.min(...deniveleArr)
+  const maxDen = Math.max(...deniveleArr)
+  const minTech = 1
+  const maxTech = 3
+
+  // Normalisation d’une course avec indice
+  function normCourseWithIndice(c) {
+    return {
+      distance: (Number(c.distance) - minD) / (maxD - minD || 1),
+      denivele: (Number(c.denivele) - minDen) / (maxDen - minDen || 1),
+      technicite: (Number(c.technicite) - minTech) / (maxTech - minTech),
+      indice: Number(c.indice),
+    }
   }
+
+  // Normalisation de la cible (sans indice)
+  function normTarget(t) {
+    return {
+      distance: (Number(t.distance) - minD) / (maxD - minD || 1),
+      denivele: (Number(t.denivele) - minDen) / (maxDen - minDen || 1),
+      technicite: (Number(t.technicite) - minTech) / (maxTech - minTech),
+    }
+  }
+
+  const historyN = historyWithIndice.map(normCourseWithIndice)
+  const targetN = normTarget(target)
+
+  // Pondérations (distance, dénivelé, technicité)
+  const wd = 0.3
+  const wden = 0.6
+  const wt = 0.1
+
+  // Calcul distance euclidienne pondérée
+  const scored = historyN.map((c) => {
+    const d =
+      wd * (c.distance - targetN.distance) ** 2 +
+      wden * (c.denivele - targetN.denivele) ** 2 +
+      wt * (c.technicite - targetN.technicite) ** 2
+
+    return { indice: c.indice, dist: Math.sqrt(d) }
+  })
+
+  // Récupère les k plus proches voisins
+  const k = Math.min(5, scored.length)
+  const nearest = scored.sort((a, b) => a.dist - b.dist).slice(0, k)
+
+  // Moyenne pondérée inverse distance
+  let sum = 0
+  let weightSum = 0
+
+  nearest.forEach((n) => {
+    const w = 1 / (n.dist + 0.001) // éviter division par zéro
+    sum += n.indice * w
+    weightSum += w
+  })
+
+  return Math.round(sum / weightSum)
 }
