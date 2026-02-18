@@ -7,7 +7,7 @@ function NavBar() {
       isActive ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-white'
     }`
   return (
-    <nav className="w-64 flex-none h-screen bg-gray-700  text-white flex flex-col p-4 gap-2">
+    <nav className="w-64 flex-none min-h-screen bg-gray-700  text-white flex flex-col p-4 gap-2">
       <img src={logoImg} alt="" className="w-48 mx-auto mt-4 mb-6" />
       <NavLink to="/" className={linkClass}>
         <svg
