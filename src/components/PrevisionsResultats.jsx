@@ -32,7 +32,8 @@ function PrevisionsResultats({ myTrail }) {
 
   const predictions = []
   predictions.push({
-    temps: predictTime(
+    titre: 'Chrono',
+    valeur: predictTime(
       indice,
       myTrail.distance,
       myTrail.denivele,
@@ -42,7 +43,8 @@ function PrevisionsResultats({ myTrail }) {
     explication: 'le plus probable',
   })
   predictions.push({
-    temps: predictTime(
+    titre: 'Chrono',
+    valeur: predictTime(
       indice,
       myTrail.distance,
       myTrail.denivele,
@@ -53,7 +55,8 @@ function PrevisionsResultats({ myTrail }) {
   })
   if (indice18mois) {
     predictions.push({
-      temps: predictTime(
+      titre: 'Chrono',
+      valeur: predictTime(
         indice18mois,
         myTrail.distance,
         myTrail.denivele,
@@ -63,6 +66,11 @@ function PrevisionsResultats({ myTrail }) {
       explication: 'tendance (18 mois)',
     })
   }
+  predictions.push({
+    titre: 'Indice',
+    valeur: indice,
+    explication: '',
+  })
 
   return (
     <Card title="Mes résultats possible" className="w-full">
@@ -70,8 +78,8 @@ function PrevisionsResultats({ myTrail }) {
         {predictions.map((prediction, index) => (
           <CardPush key={index}>
             <Stat
-              titre="Chrono"
-              chiffre={prediction.temps}
+              titre={prediction.titre}
+              chiffre={prediction.valeur}
               precisions={prediction.explication}
             />
           </CardPush>
