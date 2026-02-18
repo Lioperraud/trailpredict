@@ -73,7 +73,7 @@ function PrevisionsResultats({ myTrail }) {
   })
 
   return (
-    <Card title="Mes résultats possible" className="w-full">
+    <Card title="Mes résultats possible" classname="w-full">
       <div className="flex flex-wrap gap-2">
         {predictions.map((prediction, index) => (
           <CardPush key={index}>
