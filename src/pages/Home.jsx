@@ -6,11 +6,11 @@ import AccesRapide from '../components/AccesRapide'
 import IcoPrevision from '../assets/ico-prevision.svg?react'
 import IcoResultat from '../assets/ico-resultat.svg?react'
 
-function Dashboard() {
+function Home() {
   //initvaleur()
   return (
     <>
-      <Header title="Dashboard" />
+      <Header title="Accueil" />
       <section className="p-8 flex flex-wrap gap-4">
         <Card title="Accès rapide" classname="w-full">
           <div className="flex flex-wrap gap-4">
@@ -29,4 +29,4 @@ function Dashboard() {
     </>
   )
 }
-export default Dashboard
+export default Home

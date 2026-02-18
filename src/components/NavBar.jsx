@@ -14,7 +14,7 @@ function NavBar() {
       <img src={logoImg} alt="" className="w-48 mx-auto mt-4 mb-6" />
       <NavLink to="/" className={linkClass}>
         <IcoHome />
-        Dashboard
+        Accueil
       </NavLink>
       <NavLink to="/previsions" className={linkClass}>
         <IcoPrevision />

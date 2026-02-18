@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './Layout'
-import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
 import Previsions from './pages/Previsions'
 import Resultats from './pages/Resultats'
 
@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Home />} />
           <Route path="/previsions" element={<Previsions />} />
           <Route path="/resultats" element={<Resultats />} />
         </Route>
