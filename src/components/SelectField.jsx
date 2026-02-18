@@ -1,6 +1,6 @@
 function SelectField({ label, name, value, onChange, error, options }) {
   const selectClass = `
-  bg-white rounded-lg border outline-indigo-300 w-full py-2 px-4
+  bg-white rounded-lg border outline-gray-600 w-full py-3 px-2
   ${error ? 'border-red-700' : 'border-gray-200'}`
 
   const labelClass = `text-gray-700 font-medium ${

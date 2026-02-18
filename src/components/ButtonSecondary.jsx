@@ -3,7 +3,7 @@ function ButtonSecondary({ libelle, onclick = () => {}, disabled = false }) {
     <button
       onClick={onclick}
       disabled={disabled}
-      className="px-8 py-2 bg-linear-311 bg-white text-gray-800 border border-gray-800 font-medium rounded-lg cursor-pointer hover:bg-gray-50 disabled:opacity-30"
+      className="px-8 py-4 bg-linear-311 from-slate-300 to-gray-500 rounded-lg text-center text-white font-medium leading-4 uppercase cursor-pointer hover:from-slate-100 disabled:opacity-30"
     >
       {libelle}
     </button>

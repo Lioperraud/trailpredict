@@ -8,9 +8,9 @@ function InputField({
   checked = false,
 }) {
   const inputClass = `
-  bg-white rounded-lg border outline-indigo-300
+  bg-white rounded-lg border outline-gray-600
   ${error ? 'border-red-700' : 'border-gray-200'}
-  ${type === 'checkbox' ? 'w-5 p-0 h-5' : 'w-full py-2 px-4'}
+  ${type === 'checkbox' ? 'w-5 p-0 h-5' : 'w-full py-3 px-4'}
 `
   const labelClass = `text-gray-700 font-medium ${
     error ? 'text-red-700' : 'text-gray-700'

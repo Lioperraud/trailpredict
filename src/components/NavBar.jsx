@@ -15,7 +15,7 @@ function NavBar() {
 
   return (
     <nav className="w-64 flex-none min-h-screen flex flex-col p-4 gap-2">
-      <div className="w-full mx-auto mt-2 mb-4 p-8 bg-white rounded-lg shadow-[0px_3.500000238418579px_5.500000476837158px_0px_rgba(0,0,0,0.02)]">
+      <div className="w-32 mx-auto mt-2 mb-4 p-4 bg-white rounded-lg shadow-[0px_3.500000238418579px_5.500000476837158px_0px_rgba(0,0,0,0.02)]">
         <img src={logoImg} alt="" />
       </div>
       <NavLink to="/" className={linkClass}>

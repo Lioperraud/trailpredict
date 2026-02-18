@@ -1,7 +1,7 @@
 function ListTable({ children, header, onclickheader, ordre }) {
   return (
-    <ul className="border-t border-gray-200 w-full">
-      <li className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200 text-slate-400 font-medium text-sm">
+    <ul className="w-full">
+      <li className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200 text-gray-400 font-medium uppercase text-xs">
         {header.map((h, index) => (
           <span
             key={index}
