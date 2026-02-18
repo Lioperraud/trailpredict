@@ -1,7 +1,7 @@
 function Header({ title }) {
   return (
-    <header className="bg-gray-200 p-4 shadow-lg">
-      <h1 className="text-3xl text-center font-medium uppercase">{title}</h1>
+    <header className="p-8">
+      <h1 className="text-gray-700 font-bold leading-5 text-2xl">{title}</h1>
     </header>
   )
 }
