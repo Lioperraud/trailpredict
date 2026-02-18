@@ -6,9 +6,9 @@ import { getResultats } from '../utils/resultat'
 
 function PrevisionsResultats({ myTrail }) {
   if (
-    !myTrail.distance.length ||
-    !myTrail.denivele.length ||
-    !myTrail.technicite.length
+    myTrail.distance === '' ||
+    myTrail.denivele === '' ||
+    myTrail.technicite === ''
   )
     return
 
@@ -22,8 +22,6 @@ function PrevisionsResultats({ myTrail }) {
         correspond à votre objectif
       </p>
     )
-
-  console.log(indice)
 
   const datemoins18mois = new Date()
   datemoins18mois.setMonth(datemoins18mois.getMonth() - 18)

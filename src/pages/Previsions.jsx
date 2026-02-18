@@ -25,15 +25,15 @@ function Previsions() {
     const saved = localStorage.getItem('myTrail')
     return saved
       ? JSON.parse(saved)
-      : [{ distance: '', denivele: '', technicite: '' }]
+      : { distance: '', denivele: '', technicite: '' }
   })
   const [predict, SetPredict] = useState(false)
   useEffect(() => {
     localStorage.setItem('myTrail', JSON.stringify(myTrail))
     if (
-      myTrail.distance.length &&
-      myTrail.denivele.length &&
-      myTrail.technicite.length
+      myTrail.distance !== '' &&
+      myTrail.denivele !== '' &&
+      myTrail.technicite !== ''
     )
       SetPredict(true)
     else SetPredict(false)
