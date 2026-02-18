@@ -8,12 +8,12 @@ import { useState, useEffect } from 'react'
 import { HEADERLISTTABLE } from '../constants/resultat'
 import { timeToSeconds } from '../utils/date'
 import { scoreTrail } from '../utils/calcul'
+import { getResultats } from '../utils/resultat'
 
 function ResultatList() {
   //Valeurs de la liste
   const [resultats, setResultats] = useState(() => {
-    const saved = localStorage.getItem('resultats')
-    return saved ? JSON.parse(saved) : []
+    return getResultats()
   })
   useEffect(() => {
     localStorage.setItem('resultats', JSON.stringify(resultats))

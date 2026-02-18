@@ -2,6 +2,7 @@ import Card from '../components/Card'
 import CardPush from './CardPush'
 import Stat from './Stat'
 import { predictTime, estimateIndiceFromHistory } from '../utils/calcul'
+import { getResultats } from '../utils/resultat'
 
 function PrevisionsResultats({ myTrail }) {
   if (
@@ -11,8 +12,7 @@ function PrevisionsResultats({ myTrail }) {
   )
     return
 
-  const saved = localStorage.getItem('resultats')
-  const resultats = saved ? JSON.parse(saved) : []
+  const resultats = getResultats()
   const indice = estimateIndiceFromHistory(resultats, myTrail)
 
   if (!indice)

@@ -1,9 +1,9 @@
 import CardPush from './CardPush'
 import Stat from './Stat'
+import { getResultats } from '../utils/resultat'
 
 function ResultatStat() {
-  const saved = localStorage.getItem('resultats')
-  const resultats = saved ? JSON.parse(saved) : []
+  const resultats = getResultats()
 
   //Si aucun résultat pas de stat
   if (!resultats.length) return false
