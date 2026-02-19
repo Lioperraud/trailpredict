@@ -1,6 +1,6 @@
 function InfoIcoText({ Ico, titre, sousTitre, chiffre }) {
   return (
-    <div className="h-full flex flex-col items-center justify-between">
+    <div className="h-full flex flex-col items-center justify-center gap-4">
       <span className="rounded-lg p-4 bg-teal-300 flex justify-center items-center">
         <Ico className="fill-white w-8 h-auto" />
       </span>
