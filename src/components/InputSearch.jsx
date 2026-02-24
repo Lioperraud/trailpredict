@@ -6,7 +6,7 @@ function InputSearch({ search, onchange, placeholder }) {
         value={search}
         onChange={onchange}
         placeholder={placeholder}
-        className="bg-white rounded-lg py-3 pr-10 pl-4 border-gray-200 text-gray-400 border w-full outline-gray-600"
+        className="bg-white rounded-lg py-3 pr-10 pl-4 border-gray-200 text-secondary border w-full outline-gray-600"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@ function InputSearch({ search, onchange, placeholder }) {
         height="15"
         viewBox="0 0 15 15"
         fill="currentColor"
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary"
       >
         <path d="M13.3793 12.3458L10.6228 9.58929C11.2865 8.7058 11.6447 7.63041 11.6435 6.52542C11.6435 3.70297 9.34721 1.40668 6.52475 1.40668C3.70229 1.40668 1.40601 3.70297 1.40601 6.52542C1.40601 9.34788 3.70229 11.6442 6.52475 11.6442C7.62974 11.6454 8.70513 11.2871 9.58862 10.6235L12.3452 13.38C12.4847 13.5047 12.6667 13.5713 12.8538 13.5661C13.0409 13.5609 13.2188 13.4842 13.3512 13.3519C13.4835 13.2195 13.5602 13.0415 13.5654 12.8544C13.5707 12.6674 13.5041 12.4854 13.3793 12.3458ZM2.86851 6.52542C2.86851 5.80229 3.08294 5.09539 3.48469 4.49412C3.88645 3.89286 4.45748 3.42422 5.12557 3.14749C5.79366 2.87076 6.52881 2.79835 7.23805 2.93943C7.9473 3.08051 8.59878 3.42873 9.11011 3.94007C9.62145 4.4514 9.96967 5.10288 10.1107 5.81213C10.2518 6.52137 10.1794 7.25652 9.90269 7.92461C9.62595 8.5927 9.15732 9.16373 8.55606 9.56548C7.95479 9.96724 7.24789 10.1817 6.52475 10.1817C5.55541 10.1805 4.62611 9.79493 3.94068 9.1095C3.25525 8.42407 2.86967 7.49477 2.86851 6.52542Z" />
       </svg>

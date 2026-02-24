@@ -4,10 +4,10 @@ function MenuItem({ to, libelle, Icon }) {
   const match = useMatch(to)
   const icoClass = `
         rounded-lg p-2 transition delay-150 duration-200 ease-in
-        ${match ? 'bg-teal-300' : 'bg-white'}
+        ${match ? 'bg-primary' : 'bg-white'}
       `
   const svgClass = `w-6 h-auto transition delay-150 duration-200 ease-in
-        ${match ? 'fill-white' : 'fill-teal-300'}
+        ${match ? 'fill-white' : 'fill-primary'}
       `
   return (
     <>

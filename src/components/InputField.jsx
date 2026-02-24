@@ -12,8 +12,8 @@ function InputField({
   ${error ? 'border-red-700' : 'border-gray-200'}
   ${type === 'checkbox' ? 'w-5 p-0 h-5' : 'w-full py-3 px-4'}
 `
-  const labelClass = `text-gray-700 font-medium ${
-    error ? 'text-red-700' : 'text-gray-700'
+  const labelClass = `text-secondary font-medium ${
+    error ? 'text-red-700' : 'text-secondary'
   }`
 
   return (

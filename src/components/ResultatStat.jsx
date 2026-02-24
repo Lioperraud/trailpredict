@@ -140,7 +140,7 @@ function ResultatStat({ resultats }) {
           {lastResultats.map((resultat) => (
             <li
               key={resultat.id}
-              className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200"
+              className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200 text-secondary"
             >
               <span className="col-span-2 font-bold">
                 {new Date(resultat.date).toLocaleDateString('fr-FR', {

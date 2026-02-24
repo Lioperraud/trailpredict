@@ -9,15 +9,18 @@ function NavBar() {
   const linkClass = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-3 rounded-lg font-bold transition delay-150 duration-200 ease-in ${
       isActive
-        ? 'bg-white text-gray-700 shadow-[0px_3.500000238418579px_5.500000476837158px_0px_rgba(0,0,0,0.02)]'
-        : 'text-gray-400 hover:text-gray-700'
+        ? 'bg-white text-primary shadow-[0px_3.500000238418579px_5.500000476837158px_0px_rgba(0,0,0,0.02)]'
+        : 'text-secondary'
     }`
 
   return (
     <nav className="w-64 flex-none min-h-screen flex flex-col p-4 gap-2">
-      <div className="w-32 mx-auto mt-2 mb-4 p-4 bg-white rounded-lg shadow-[0px_3.500000238418579px_5.500000476837158px_0px_rgba(0,0,0,0.02)]">
+      <NavLink
+        to="/"
+        className="w-32 mx-auto mt-2 mb-4 p-4 bg-primary rounded-lg shadow-[0px_3.500000238418579px_5.500000476837158px_0px_rgba(0,0,0,0.02)]"
+      >
         <img src={logoImg} alt="" />
-      </div>
+      </NavLink>
       <NavLink to="/" className={linkClass}>
         <MenuItem to="/" libelle="Accueil" Icon={IcoHome} />
       </NavLink>
