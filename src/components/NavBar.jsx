@@ -21,11 +21,11 @@ function NavBar() {
       <NavLink to="/" className={linkClass}>
         <MenuItem to="/" libelle="Accueil" Icon={IcoHome} />
       </NavLink>
-      <NavLink to="/previsions" className={linkClass}>
-        <MenuItem to="/previsions" libelle="Prévisions" Icon={IcoPrevision} />
-      </NavLink>
       <NavLink to="/resultats" className={linkClass}>
         <MenuItem to="/resultats" libelle="Résultats" Icon={IcoResultat} />
+      </NavLink>
+      <NavLink to="/previsions" className={linkClass}>
+        <MenuItem to="/previsions" libelle="Prévisions" Icon={IcoPrevision} />
       </NavLink>
     </nav>
   )

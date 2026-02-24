@@ -1,9 +1,28 @@
-function ChronoText({ Ico, titre, chrono, precisions, highlighting = false }) {
+function ChronoText({
+  Ico,
+  titre,
+  chrono,
+  precisions,
+  highlighting = false,
+  icoStroke = false,
+}) {
   const divFirstClass = `h-full flex flex-col justify-between ${highlighting ? 'text-white' : 'text-gray-600'}`
   const h3Class = `flex flex-row gap-2 items-center font-medium ${highlighting ? 'text-2xl' : 'text-xl'}`
-  const IcoClass = `h-auto  ${highlighting ? 'w-6 fill-white' : 'w-5  fill-gray-600'}`
+  //const IcoClass = `h-auto  ${highlighting ? 'w-6 fill-white' : 'w-5  fill-gray-600'}`
+
+  const IcoClassSize = highlighting ? 'w-6' : 'w-5'
+  const IcoClassSizeColor = icoStroke
+    ? highlighting
+      ? 'stroke-white'
+      : 'stroke-gray-600'
+    : highlighting
+      ? 'fill-white'
+      : 'fill-gray-600'
+
+  const IcoClass = `h-auto ${IcoClassSize} ${IcoClassSizeColor}`
+
   const h4Class = `${highlighting ? 'text-8xl' : 'text-6xl'}`
-  const h5Class = `uppercase ${highlighting ? 'text-teal-300 text-sm' : 'text-xs'}`
+  const h5Class = `${highlighting ? 'text-teal-300 text-sm' : 'text-xs'}`
   return (
     <div className={divFirstClass}>
       <h3 className={h3Class}>

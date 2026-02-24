@@ -8,7 +8,8 @@ import { getResultats } from '../utils/resultat'
 import IcoPrevision from '../assets/ico-prevision.svg?react'
 import IcoResultat from '../assets/ico-resultat.svg?react'
 import IcoPluie from '../assets/ico-pluie.svg?react'
-import IcoCalendrier from '../assets/ico-calendrier.svg?react'
+import IcoFleche from '../assets/ico-fleche.svg?react'
+import IcoIndice from '../assets/ico-indice.svg?react'
 
 function PrevisionsResultats({ classname, myTrail }) {
   if (
@@ -70,7 +71,7 @@ function PrevisionsResultats({ classname, myTrail }) {
       </CardPush>
       <CardPushLight classname="col-span-3 row-span-2">
         <InfoIcoText
-          Ico={IcoResultat}
+          Ico={IcoIndice}
           titre="Indice"
           sousTitre="Prévisionnel"
           chiffre={indice}
@@ -79,7 +80,7 @@ function PrevisionsResultats({ classname, myTrail }) {
       <div className="col-span-12 grid grid-cols-12 gap-4">
         <CardPushSecondary classname="col-span-5">
           <ChronoText
-            Ico={IcoCalendrier}
+            Ico={IcoFleche}
             titre="Forme actuelle"
             chrono={tempsPredict18mois}
             precisions="Calcul basé sur les 18 derniers mois"
