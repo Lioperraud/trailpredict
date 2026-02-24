@@ -55,6 +55,9 @@ function PrevisionsForm({ myTrail, setMyTrail, predict }) {
         onsubmit={handleSubmit}
         btnvalidelibelle="Calculer"
         disabled={loading}
+        annulepossible={predict}
+        btnannulelibelle="Réinitialiser"
+        onclickannule={handleDelete}
       >
         <InputField
           label="Distance"
@@ -79,9 +82,6 @@ function PrevisionsForm({ myTrail, setMyTrail, predict }) {
           options={TECHNICITE}
         />
       </FormEdit>
-      {predict && (
-        <ButtonSecondary libelle="Réinitialiser" onclick={handleDelete} />
-      )}
     </>
   )
 }
