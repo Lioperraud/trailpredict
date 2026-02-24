@@ -3,8 +3,8 @@ function SelectField({ label, name, value, onChange, error, options }) {
   bg-white rounded-lg border outline-gray-600 w-full py-3 px-2
   ${error ? 'border-red-700' : 'border-gray-200'}`
 
-  const labelClass = `text-secondary font-medium ${
-    error ? 'text-red-700' : 'text-secondary'
+  const labelClass = `text-primary font-medium ${
+    error ? 'text-red-700' : 'text-primary'
   }`
   return (
     <div className="flex flex-col gap-1 w-full">

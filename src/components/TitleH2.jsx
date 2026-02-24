@@ -1,4 +1,4 @@
-function TitleH2({ title, colorText = 'text-secondary' }) {
+function TitleH2({ title, colorText = 'text-primary' }) {
   return (
     <h2 className={`justify-start text-xl font-bold ${colorText}`}>{title}</h2>
   )

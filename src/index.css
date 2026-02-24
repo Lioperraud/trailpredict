@@ -3,10 +3,9 @@
 
 @theme {
   --font-inter: 'Inter', sans-serif;
-  --color-primary: rgba(79, 209, 197, 1);
-  --color-primary: rgba(45, 170, 157, 1);
-  --color-secondary: rgba(45, 55, 72, 1);
-  --color-fond: rgba(248, 249, 250, 1);
-  --color-degrade-from: rgba(49, 56, 96, 1);
-  --color-degrade-to: rgba(21, 25, 40, 1);
+  --color-primary: rgba(17, 42, 90, 1);
+  --color-secondary: rgba(14, 116, 144, 1);
+  --color-fond: rgba(12, 18, 32, 1);
+  --color-degrade-from: rgba(17, 42, 90, 1);
+  --color-degrade-to: rgba(30, 64, 150, 1);
 }

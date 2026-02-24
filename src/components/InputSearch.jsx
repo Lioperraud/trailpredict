@@ -6,7 +6,7 @@ function InputSearch({ search, onchange, placeholder }) {
         value={search}
         onChange={onchange}
         placeholder={placeholder}
-        className="bg-white rounded-lg py-3 pr-10 pl-4 border-gray-200 text-secondary border w-full outline-gray-600"
+        className="bg-white rounded-lg py-3 pr-10 pl-4 border-gray-200 text-primary border w-full outline-gray-600"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -10,7 +10,7 @@ function NavBar() {
     `flex items-center gap-3 px-4 py-3 rounded-lg font-bold transition delay-150 duration-200 ease-in ${
       isActive
         ? 'bg-white text-primary shadow-[0px_3.500000238418579px_5.500000476837158px_0px_rgba(0,0,0,0.02)]'
-        : 'text-secondary'
+        : 'text-white'
     }`
 
   return (

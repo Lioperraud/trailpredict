@@ -122,7 +122,7 @@ function ResultatList() {
               <li
                 key={p}
                 onClick={() => setPage(p)}
-                className={`border border-primary w-6 h-6 text-xs flex items-center justify-center cursor-pointer ${p === page ? 'bg-primary text-white' : 'text-secondary'}`}
+                className={`border border-primary w-6 h-6 text-xs flex items-center justify-center cursor-pointer ${p === page ? 'bg-primary text-white' : 'text-primary'}`}
               >
                 {p}
               </li>

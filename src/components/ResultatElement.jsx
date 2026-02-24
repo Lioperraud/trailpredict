@@ -11,7 +11,7 @@ function ResultatElement({ resultat, onDelete, onEdit }) {
   const [affDetail, setAffDetail] = useState(false)
 
   return (
-    <li className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200 text-secondary">
+    <li className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200 text-primary">
       <span className="col-span-2 flex gap-2 items-center font-bold">
         <svg
           version="1.1"
@@ -21,7 +21,7 @@ function ResultatElement({ resultat, onDelete, onEdit }) {
           height="20"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="w-4 h-auto cursor-pointer text-secondary"
+          className="w-4 h-auto cursor-pointer text-primary"
           onClick={() => setAffDetail(!affDetail)}
         >
           <path d="M17.5 20h-16c-0.827 0-1.5-0.673-1.5-1.5v-16c0-0.827 0.673-1.5 1.5-1.5h16c0.827 0 1.5 0.673 1.5 1.5v16c0 0.827-0.673 1.5-1.5 1.5zM1.5 2c-0.276 0-0.5 0.224-0.5 0.5v16c0 0.276 0.224 0.5 0.5 0.5h16c0.276 0 0.5-0.224 0.5-0.5v-16c0-0.276-0.224-0.5-0.5-0.5h-16z"></path>
