@@ -16,7 +16,7 @@ function FormEdit({
       className="flex flex-col items-start gap-3 xl:gap-4 w-full"
     >
       {children}
-      <div className="flex gap-2">
+      <div className="flex flex-col xl:flex-row w-full gap-2">
         <ButtonPrimary libelle={btnvalidelibelle} disabled={disabled} />
         {annulepossible && (
           <ButtonSecondary libelle={btnannulelibelle} onclick={onclickannule} />

@@ -60,7 +60,7 @@ function PrevisionsResultats({ classname, myTrail }) {
 
   return (
     <div className={`grid grid-cols-12 gap-4 ${classname}`}>
-      <CardPush classname="col-span-9 row-span-2 flex flex-col justify-between">
+      <CardPush classname="col-span-12 xl:col-span-9 xl:row-span-2 flex flex-col justify-between">
         <ChronoText
           Ico={IcoPrevision}
           titre="Temps estimé"
@@ -69,7 +69,7 @@ function PrevisionsResultats({ classname, myTrail }) {
           highlighting="true"
         />
       </CardPush>
-      <CardPushLight classname="col-span-3 row-span-2">
+      <CardPushLight classname="col-span-12 xl:col-span-3 row-span-2">
         <InfoIcoText
           Ico={IcoIndice}
           titre="Indice"
@@ -78,7 +78,7 @@ function PrevisionsResultats({ classname, myTrail }) {
         />
       </CardPushLight>
       <div className="col-span-12 grid grid-cols-12 gap-4">
-        <CardPushSecondary classname="col-span-6">
+        <CardPushSecondary classname="col-span-12 xl:col-span-6">
           <ChronoText
             Ico={IcoFleche}
             titre="Forme actuelle"
@@ -86,7 +86,7 @@ function PrevisionsResultats({ classname, myTrail }) {
             precisions="Calcul basé sur les 18 derniers mois"
           />
         </CardPushSecondary>
-        <CardPushSecondary classname="col-span-6">
+        <CardPushSecondary classname="col-span-12 xl:col-span-6">
           <ChronoText
             Ico={IcoPluie}
             titre="En condition difficile"

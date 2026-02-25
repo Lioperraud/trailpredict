@@ -42,8 +42,8 @@ function Previsions() {
   return (
     <>
       <Header title="Prévisions" />
-      <section className="px-8 grid grid-cols-12 gap-4">
-        <Card title="Mon prochain trail" classname="col-span-4">
+      <section className="px-6 xl:px-8 grid grid-cols-12 gap-4 pb-8">
+        <Card title="Mon prochain trail" classname="col-span-12 xl:col-span-4">
           <PrevisionsForm
             myTrail={myTrail}
             setMyTrail={setMyTrail}
@@ -51,7 +51,10 @@ function Previsions() {
           />
         </Card>
         {predict && (
-          <PrevisionsResultats classname="col-span-8" myTrail={myTrail} />
+          <PrevisionsResultats
+            classname="col-span-12 xl:col-span-8"
+            myTrail={myTrail}
+          />
         )}
       </section>
     </>
