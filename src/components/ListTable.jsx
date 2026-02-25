@@ -5,7 +5,7 @@ function ListTable({ children, header, onclickheader, ordre }) {
         {header.map((h, index) => (
           <span
             key={index}
-            className={`cursor-pointer flex gap-2 col-span-${h.cs}${h.right ? ' justify-end' : ''}`}
+            className={`cursor-pointer gap-2 col-span-${h.cs} xl:col-span-${h.csxl} ${h.right ? 'justify-end' : ''} ${h.visiblexlxl ? 'hidden xl:flex' : 'flex'}`}
             onClick={() => onclickheader(h.name)}
           >
             {h.libelle}

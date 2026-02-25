@@ -13,7 +13,7 @@ function FormEdit({
   return (
     <form
       onSubmit={onsubmit}
-      className="flex flex-col items-start gap-4 w-full"
+      className="flex flex-col items-start gap-3 xl:gap-4 w-full"
     >
       {children}
       <div className="flex gap-2">

@@ -2,16 +2,16 @@ function Modal({ children, onclickclose }) {
   return (
     <div
       onClick={onclickclose}
-      className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center"
+      className="fixed z-100 inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white rounded-lg shadow-lg px-5 py-7"
+        className="relative bg-white rounded-lg shadow-lg p-4 xl:p-6 max-w-[calc(100vw-40px)] max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-hidden"
       >
         {children}
         <div
           onClick={onclickclose}
-          className="absolute -top-10 -right-5 text-gray-400 bg-white rounded-4xl p-1 cursor-pointer"
+          className="absolute top-2 right-2 text-gray-400 cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

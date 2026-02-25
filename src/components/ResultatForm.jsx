@@ -81,7 +81,7 @@ function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
     setLoading(false)
   }
   return (
-    <div className="w-100 flex flex-col gap-4">
+    <div className="w-[calc(100vw-80px)] xl:w-100 flex flex-col gap-4">
       <header className="pb-1 border-b-2 border-gray-200">
         <TitleH2 title="Ajouter un résultat" />
       </header>

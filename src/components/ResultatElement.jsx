@@ -6,13 +6,13 @@ function ResultatElement({ resultat, onDelete, onEdit }) {
   const dateFormatFr = new Date(resultat.date).toLocaleDateString('fr-FR', {
     day: 'numeric',
     month: 'numeric',
-    year: 'numeric',
+    year: '2-digit',
   })
   const [affDetail, setAffDetail] = useState(false)
 
   return (
-    <li className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200 text-primary">
-      <span className="col-span-2 flex gap-2 items-center font-bold">
+    <li className="grid grid-cols-12 gap-4 items-start py-3 border-b border-gray-200 text-primary text-sm xl:text-base">
+      <span className="col-span-4 xl:col-span-2 flex gap-2 items-center font-bold">
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@ function ResultatElement({ resultat, onDelete, onEdit }) {
           height="20"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="w-4 h-auto cursor-pointer text-primary"
+          className="w-3 xl:w-4 h-auto cursor-pointer text-primary"
           onClick={() => setAffDetail(!affDetail)}
         >
           <path d="M17.5 20h-16c-0.827 0-1.5-0.673-1.5-1.5v-16c0-0.827 0.673-1.5 1.5-1.5h16c0.827 0 1.5 0.673 1.5 1.5v16c0 0.827-0.673 1.5-1.5 1.5zM1.5 2c-0.276 0-0.5 0.224-0.5 0.5v16c0 0.276 0.224 0.5 0.5 0.5h16c0.276 0 0.5-0.224 0.5-0.5v-16c0-0.276-0.224-0.5-0.5-0.5h-16z"></path>
@@ -35,18 +35,26 @@ function ResultatElement({ resultat, onDelete, onEdit }) {
 
         {dateFormatFr}
       </span>
-      <span className="col-span-4 font-bold">{resultat.nom}</span>
-      <span className="col-span-1 text-right">{resultat.distance}</span>
-      <span className="col-span-1 text-right">{resultat.denivele}</span>
-      <span className="col-span-2 font-bold text-right">{resultat.temps}</span>
-      <span className="col-span-1 text-right">{resultat.indice}</span>
-      <span className="col-span-1 flex justify-end items-center gap-2">
+      <span className="col-span-7 xl:col-span-4 font-bold">{resultat.nom}</span>
+      <span className="col-span-1 text-right hidden xl:block">
+        {resultat.distance}
+      </span>
+      <span className="col-span-1 text-right hidden xl:block">
+        {resultat.denivele}
+      </span>
+      <span className="col-span-2 font-bold text-right hidden xl:block">
+        {resultat.temps}
+      </span>
+      <span className="col-span-1 text-right hidden xl:block">
+        {resultat.indice}
+      </span>
+      <span className="col-span-1 flex flex-col xl:flex-row row-span-2 xl:row-span-1 justify-end items-center gap-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="12"
           height="12"
           viewBox="0 0 12 12"
-          className="w-5 h-auto cursor-pointer"
+          className="w-4 xl:w-5 h-auto cursor-pointer"
           fill="currentColor"
           onClick={() => onEdit(resultat)}
         >
@@ -59,7 +67,21 @@ function ResultatElement({ resultat, onDelete, onEdit }) {
         />
       </span>
       {affDetail && (
-        <span className="col-span-12 italic">
+        <span className="col-span-11 xl:col-span-12 italic">
+          <span className="xl:hidden">
+            <span className="font-bold">Distance</span> : {resultat.distance}
+            {'km '}/{' '}
+          </span>
+          <span className="xl:hidden">
+            <span className="font-bold">Dénivelé</span> : {resultat.denivele}
+            {'m '}/{' '}
+          </span>
+          <span className="xl:hidden">
+            <span className="font-bold">Temps</span> : {resultat.temps} /{' '}
+          </span>
+          <span className="xl:hidden">
+            <span className="font-bold">Indice</span> : {resultat.indice} /{' '}
+          </span>
           <span className="font-bold">km-effort</span> : {resultat.kmEffort} /{' '}
           <span className="font-bold">Technicité</span>:{' '}
           {TECHNICITE.find((item) => item.value === resultat.technicite)

@@ -1,9 +1,9 @@
 function SelectField({ label, name, value, onChange, error, options }) {
   const selectClass = `
-  bg-white rounded-lg border outline-gray-600 w-full py-3 px-2
+  bg-white rounded-lg border outline-gray-600 w-full py-3 px-2 text-sm xl:text-base
   ${error ? 'border-red-700' : 'border-gray-200'}`
 
-  const labelClass = `text-primary font-medium ${
+  const labelClass = `text-primary font-medium text-sm xl:text-base ${
     error ? 'text-red-700' : 'text-primary'
   }`
   return (

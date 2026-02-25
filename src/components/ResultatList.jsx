@@ -117,7 +117,7 @@ function ResultatList() {
               />
             ))}
           </ListTable>
-          <ul className="flex  flex-row items-end justify-end w-full gap-2">
+          <ul className="flex  flex-row items-end justify-center xl:justify-end w-full gap-2">
             {pagination.map((p) => (
               <li
                 key={p}

@@ -146,7 +146,7 @@ function ResultatStat({ resultats }) {
                 {new Date(resultat.date).toLocaleDateString('fr-FR', {
                   day: 'numeric',
                   month: 'numeric',
-                  year: 'numeric',
+                  year: '2-digit',
                 })}
               </span>
               <span className="col-span-5 font-bold">{resultat.nom}</span>
