@@ -2,10 +2,14 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-inter: 'Inter', sans-serif;
+  --font-defaut: 'Inter', sans-serif;
   --color-primary: rgba(17, 42, 90, 1);
   --color-secondary: rgba(14, 116, 144, 1);
   --color-fond: rgba(12, 18, 32, 1);
   --color-degrade-from: rgba(17, 42, 90, 1);
   --color-degrade-to: rgba(30, 64, 150, 1);
+}
+body {
+  background: var(--color-fond);
+  font-family: var(--font-defaut);
 }

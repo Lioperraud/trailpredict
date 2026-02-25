@@ -64,22 +64,28 @@ function ResultatStat({ resultats }) {
       name: 'date',
       libelle: 'Date',
       cs: 2,
+      csxl: 2,
+      visiblexlxl: true,
     },
     {
       name: 'nom',
       libelle: 'Trail',
-      cs: 5,
+      cs: 8,
+      csxl: 5,
     },
     {
       name: 'distance_denivele',
       libelle: 'Distance / Dénivelé',
-      cs: 2,
+      cs: 0,
+      csxl: 2,
       right: true,
+      visiblexlxl: true,
     },
     {
       name: 'temps',
       libelle: 'Temps',
-      cs: 3,
+      cs: 4,
+      csxl: 3,
       right: true,
     },
   ]
@@ -87,15 +93,7 @@ function ResultatStat({ resultats }) {
 
   return (
     <div className="w-full grid grid-cols-12 gap-4">
-      <CardPushLight classname="col-span-2">
-        <InfoIcoText
-          Ico={IcoIndice}
-          titre="Indice"
-          sousTitre="Moyen"
-          chiffre={indiceMoyen}
-        />
-      </CardPushLight>
-      <CardPush classname="col-span-10 flex flex-col justify-between">
+      <CardPush classname="col-span-12 xl:col-span-10 flex flex-col justify-between">
         <ChronoText
           Ico={IcoPrevision}
           titre="Meilleur performance"
@@ -104,7 +102,15 @@ function ResultatStat({ resultats }) {
           highlighting="true"
         />
       </CardPush>
-      <CardPushSecondary classname="col-span-4 row-start-2">
+      <CardPushLight classname="col-span-12 xl:col-span-2">
+        <InfoIcoText
+          Ico={IcoIndice}
+          titre="Indice"
+          sousTitre="Moyen"
+          chiffre={indiceMoyen}
+        />
+      </CardPushLight>
+      <CardPushSecondary classname="col-span-12 xl:col-span-4 xl:row-start-2">
         <ChronoText
           Ico={IcoDistance}
           titre="Distance la plus longue"
@@ -112,7 +118,7 @@ function ResultatStat({ resultats }) {
           precisions={maxDistanceItem.nom}
         />
       </CardPushSecondary>
-      <CardPushSecondary classname="col-span-4 row-start-2">
+      <CardPushSecondary classname="col-span-12 xl:col-span-4 xl:row-start-2">
         <ChronoText
           Ico={IcoFleche}
           titre="Dénivelé le plus grand"
@@ -120,7 +126,7 @@ function ResultatStat({ resultats }) {
           precisions={maxDeniveleItem.nom}
         />
       </CardPushSecondary>
-      <CardPushSecondary classname="col-span-4 row-start-2">
+      <CardPushSecondary classname="col-span-12 xl:col-span-4 xl:row-start-2">
         <ChronoText
           Ico={IcoChrono}
           icoStroke="true"
@@ -129,7 +135,10 @@ function ResultatStat({ resultats }) {
           precisions={maxTempsItem.nom}
         />
       </CardPushSecondary>
-      <Card title="Mes derniers résultats" classname="col-span-6">
+      <Card
+        title="Mes derniers résultats"
+        classname="col-span-12 xl:col-span-6"
+      >
         <ListTable
           header={headerMesResultats}
           onclickheader={() => {
@@ -142,23 +151,25 @@ function ResultatStat({ resultats }) {
               key={resultat.id}
               className="grid grid-cols-12 gap-4 py-3 border-b border-gray-200 text-primary"
             >
-              <span className="col-span-2 font-bold">
+              <span className="col-span-2 font-bold hidden xl:block">
                 {new Date(resultat.date).toLocaleDateString('fr-FR', {
                   day: 'numeric',
                   month: 'numeric',
                   year: '2-digit',
                 })}
               </span>
-              <span className="col-span-5 font-bold">{resultat.nom}</span>
-              <span className="col-span-2 text-right">{`${resultat.distance} km / +${resultat.denivele} m`}</span>
-              <span className="col-span-3 font-bold text-right">
+              <span className="col-span-8 xl:col-span-5 font-bold">
+                {resultat.nom}
+              </span>
+              <span className="col-span-0 xl:col-span-2 text-right hidden xl:block">{`${resultat.distance} km / +${resultat.denivele} m`}</span>
+              <span className="col-span-4 xl:col-span-3 font-bold text-right">
                 {resultat.temps}
               </span>
             </li>
           ))}
         </ListTable>
       </Card>
-      <CardPush classname="col-span-6 flex flex-col gap-6 ">
+      <CardPush classname="col-span-12 xl:col-span-6 flex flex-col gap-6 ">
         <BarChart
           titre="Mes 10 derniers indices"
           min="0"

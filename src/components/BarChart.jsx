@@ -18,9 +18,9 @@ function BarChart({ titre, min, max, vals }) {
         </div>
 
         {/* Graphique */}
-        <div className="flex items-end justify-around gap-4 h-64 flex-1">
+        <div className="flex items-end justify-around gap-1 xl:gap-4 h-64 flex-1">
           {vals.map((indice) => (
-            <div className="flex flex-col items-center justify-end w-10 h-full">
+            <div className="flex flex-col items-center justify-end w-2 xl:w-10 h-full">
               <div
                 className="w-2 bg-white rounded-2xl relative"
                 style={{ height: `${(indice / max) * 100}%` }}

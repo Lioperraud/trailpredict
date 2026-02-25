@@ -6,7 +6,7 @@ import { useState } from 'react'
 export default function Layout() {
   const [affMenu, setAffMenu] = useState(false)
   return (
-    <div className="flex font-inter bg-fond">
+    <div className="flex">
       <NavBar affMenu={affMenu} setAffMenu={setAffMenu} />
       <main className="flex-1">
         <HeaderMobile setAffMenu={setAffMenu} />

@@ -6,7 +6,7 @@ function InfoIcoTextLine({ Ico, titre, chiffre }) {
         <h2 className="text-2xl font-bold text-primary">{chiffre}</h2>
       </div>
       <span className="rounded-lg p-4 bg-primary flex justify-center items-center">
-        <Ico className="fill-white w-6 h-auto" />
+        <Ico className="fill-white w-5 xl:w-6 h-auto" />
       </span>
     </div>
   )

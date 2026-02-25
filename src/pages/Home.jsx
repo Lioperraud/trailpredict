@@ -73,7 +73,7 @@ function Home() {
         ) : (
           <>
             <div className="w-full grid grid-cols-12 gap-4">
-              <CardPushLight classname="cursor-pointer col-span-3">
+              <CardPushLight classname="cursor-pointer col-span-12 xl:col-span-3">
                 <NavLink to="/resultats">
                   <InfoIcoTextLine
                     Ico={IcoResultat}
@@ -83,7 +83,7 @@ function Home() {
                 </NavLink>
               </CardPushLight>
               {predictExiste && (
-                <CardPushLight classname="cursor-pointer col-span-3">
+                <CardPushLight classname="cursor-pointer col-span-12 xl:col-span-3">
                   <NavLink to="/previsions">
                     <InfoIcoTextLine
                       Ico={IcoPrevision}
