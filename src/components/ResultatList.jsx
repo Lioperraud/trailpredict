@@ -8,16 +8,23 @@ import { useState, useEffect } from 'react'
 import { HEADERLISTTABLE } from '../constants/resultat'
 import { timeToSeconds } from '../utils/date'
 import { scoreTrail } from '../utils/calcul'
-import { getResultats } from '../utils/resultat'
+import { subscribeToUserResults } from '../services/firestoreService'
+import { useAuth } from '../context/AuthContext'
+import { deleteResult } from '../services/firestoreService'
 
 function ResultatList() {
+  const { user } = useAuth()
   //Valeurs de la liste
-  const [resultats, setResultats] = useState(() => {
-    return getResultats()
-  })
+  const [resultats, setResultats] = useState([])
+
+  //Mise a jour résultat quand add/edit/delete
   useEffect(() => {
-    localStorage.setItem('resultats', JSON.stringify(resultats))
-  }, [resultats])
+    if (!user) return
+
+    const unsubscribe = subscribeToUserResults(user.uid, setResultats)
+
+    return () => unsubscribe() // Nettoyage propre
+  }, [user])
 
   //Ajout des valeurs calculées
   const resultatsWithKmEffort = resultats.map((r) => ({
@@ -81,8 +88,8 @@ function ResultatList() {
 
   //Action sur la liste
   const [addResultat, setAddResultat] = useState(false)
-  const deleteResultat = (id) => {
-    setResultats((prev) => prev.filter((r) => r.id !== id))
+  const handleDelete = async (id) => {
+    await deleteResult(id)
   }
   const [editResultat, setEditResultat] = useState(null)
   const handleEdit = (r) => {
@@ -112,7 +119,7 @@ function ResultatList() {
               <ResultatElement
                 key={resultat.id}
                 resultat={resultat}
-                onDelete={deleteResultat}
+                onDelete={handleDelete}
                 onEdit={handleEdit}
               />
             ))}

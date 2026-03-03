@@ -5,8 +5,11 @@ import SelectField from './SelectField'
 import FormEdit from './FormEdit'
 import { isValidDate, isNumeric, isValidDuration } from '../utils/form'
 import { TECHNICITE } from '../constants/resultat'
+import { saveResult, updateResult } from '../services/firestoreService'
+import { useAuth } from '../context/AuthContext'
 
 function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
+  const { user } = useAuth()
   const [form, setForm] = useState({
     id: 0,
     date: '',
@@ -67,16 +70,16 @@ function ResultatForm({ resultats, setResultats, setAddResultat, edit }) {
     const validationErrors = validate()
     setErrors(validationErrors)
     if (!Object.keys(validationErrors).length) {
-      let newResultats
-      if (!form.id) {
-        newResultats = [...resultats, { ...form, id: Date.now() }]
-      } else {
-        newResultats = resultats.map((r) =>
-          r.id === form.id ? { ...r, ...form } : r,
-        )
+      try {
+        if (!form.id) {
+          await saveResult(user.uid, form)
+        } else {
+          await updateResult(form.id, form)
+        }
+        setAddResultat(false)
+      } catch (error) {
+        console.error(error)
       }
-      setResultats(newResultats)
-      setAddResultat(false)
     }
     setLoading(false)
   }

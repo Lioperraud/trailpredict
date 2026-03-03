@@ -1,6 +1,5 @@
 import Header from '../components/Header'
 import ResultatStat from '../components/ResultatStat'
-import { initvaleur } from '../utils/dev'
 import Card from '../components/Card'
 import CardPushLight from '../components/CardPushLight'
 import InfoIcoTextLine from '../components/InfoIcoTextLine'
@@ -8,20 +7,24 @@ import IcoPrevision from '../assets/ico-prevision.svg?react'
 import IcoResultat from '../assets/ico-resultat.svg?react'
 import { NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { getResultats } from '../utils/resultat'
+import { getUserResults } from '../services/firestoreService'
+import { useAuth } from '../context/AuthContext'
 import { predictTime, estimateIndiceFromHistory } from '../utils/calcul'
 import ButtonPrimary from '../components/ButtonPrimary'
 
 function Home() {
-  //initvaleur()
-
-  const [resultatExiste, setResultatExiste] = useState(false)
-  const [resultats] = useState(() => {
-    return getResultats()
-  })
+  const { user } = useAuth()
+  const [resultats, setResultats] = useState([])
   useEffect(() => {
-    if (resultats.length) setResultatExiste(true)
-  }, [resultats])
+    if (!user) return
+
+    const loadResults = async () => {
+      const data = await getUserResults(user.uid)
+      setResultats(data)
+    }
+
+    loadResults()
+  }, [user])
 
   const [myTrail, setMyTrail] = useState(() => {
     const saved = localStorage.getItem('myTrail')
@@ -49,13 +52,13 @@ function Home() {
         ),
       )
     } else SetPredictExiste(false)
-  }, [myTrail])
+  }, [resultats, myTrail])
 
   return (
     <>
       <Header title="Accueil" />
       <section className="px-6 xl:px-8 pb-8 flex flex-wrap gap-4">
-        {!resultatExiste ? (
+        {!resultats.length ? (
           <>
             <Card title="Bienvenue dans TrailPredict">
               <p>

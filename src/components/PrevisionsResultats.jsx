@@ -4,14 +4,12 @@ import CardPushLight from './CardPushLight'
 import ChronoText from './ChronoText'
 import InfoIcoText from './InfoIcoText'
 import { predictTime, estimateIndiceFromHistory } from '../utils/calcul'
-import { getResultats } from '../utils/resultat'
 import IcoPrevision from '../assets/ico-prevision.svg?react'
-import IcoResultat from '../assets/ico-resultat.svg?react'
 import IcoPluie from '../assets/ico-pluie.svg?react'
 import IcoFleche from '../assets/ico-fleche.svg?react'
 import IcoIndice from '../assets/ico-indice.svg?react'
 
-function PrevisionsResultats({ classname, myTrail }) {
+function PrevisionsResultats({ classname, myTrail, resultats }) {
   if (
     myTrail.distance === '' ||
     myTrail.denivele === '' ||
@@ -19,7 +17,6 @@ function PrevisionsResultats({ classname, myTrail }) {
   )
     return
 
-  const resultats = getResultats()
   const indice = estimateIndiceFromHistory(resultats, myTrail)
 
   if (!indice)
