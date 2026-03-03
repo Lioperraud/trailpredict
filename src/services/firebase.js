@@ -3,12 +3,12 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAGclKW3tnC8RRufqZjUa1Bvna0XurwbWY',
-  authDomain: 'trailpredict-141d5.firebaseapp.com',
-  projectId: 'trailpredict-141d5',
-  storageBucket: 'trailpredict-141d5.firebasestorage.app',
-  messagingSenderId: '159193370678',
-  appId: '1:159193370678:web:27756f0b99039ae00e4897',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
 const app = initializeApp(firebaseConfig)
